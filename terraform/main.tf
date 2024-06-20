@@ -16,7 +16,8 @@ resource "aws_instance" "strapi" {
                                 cd simple-strapi
                                 echo "const strapi = require('@strapi/strapi');
                                 strapi().start();" > server.js
-                                pm2 start server.js
+                                pm2 start server.js --name strapi
+                                pm2 save && pm2 startup
                                 sleep 360
                                 EOF
 
