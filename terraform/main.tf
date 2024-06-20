@@ -1,14 +1,10 @@
-
-
 resource "aws_instance" "strapi" {
-  ami                    = "ami-09040d770ffe2224f" # Amazon Linux 2 AMI
-  instance_type          = "t2.medium"
+  ami                         = "ami-09040d770ffe2224f"
+  instance_type               = "t2.medium"
   subnet_id              = "subnet-0f8632da3b474a417"
   vpc_security_group_ids = [aws_security_group.strapi_sg.id]
   key_name = "strapi_key2"
-  tags = {
-    Name = "StrapiServer"
-  }
+  associate_public_ip_address = true
   user_data                   = <<-EOF
                                 #!/bin/bash
                                 sudo apt update
@@ -24,10 +20,12 @@ resource "aws_instance" "strapi" {
                                 sleep 360
                                 EOF
 
- 
+  tags = {
+    Name = "Strapi_Server"
+  }
 }
 
-
+ 
 
 resource "aws_security_group" "strapi_sg" {
   name        = "ec2-SG-strapi"
