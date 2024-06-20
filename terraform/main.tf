@@ -1,6 +1,4 @@
-provider "aws" {
-  region = "us-east-2"
-}
+
 
 resource "aws_instance" "strapi" {
   ami                    = "ami-09040d770ffe2224f" # Amazon Linux 2 AMI
